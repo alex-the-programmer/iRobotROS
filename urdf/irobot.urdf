@@ -100,10 +100,27 @@
       </geometry>
     </collision>
   </link>
-  <joint name="left_len_ankle_to_left_foot_heel" type="fixed">
+  <joint name="left_leg_ankle_to_left_foot_heel" type="fixed">
     <parent link="left_leg_ankle"/>
     <child link="left_foot_heel"/>
     <origin xyz="0 0.1 -0.2"/>
+  </joint>
+  <link name="left_foot_extendable">
+    <visual>
+      <geometry>
+        <cylinder length="0.2" radius="0.02"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.2" radius="0.02"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="left_foot_heel_to_left_foot_extendable" type="fixed">
+    <parent link="left_foot_heel"/>
+    <child link="left_foot_extendable"/>
+    <origin rpy="1.5708 0 0" xyz="0 -0.25 0"/>
   </joint>
   <link name="right_leg_hip">
     <visual>
@@ -152,10 +169,27 @@
       </geometry>
     </collision>
   </link>
-  <joint name="right_len_ankle_to_right_foot_heel" type="fixed">
+  <joint name="right_leg_ankle_to_right_foot_heel" type="fixed">
     <parent link="right_leg_ankle"/>
     <child link="right_foot_heel"/>
     <origin xyz="0 0.1 -0.2"/>
+  </joint>
+  <link name="right_foot_extendable">
+    <visual>
+      <geometry>
+        <cylinder length="0.2" radius="0.02"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.2" radius="0.02"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="right_foot_heel_to_right_foot_extendable" type="fixed">
+    <parent link="right_foot_heel"/>
+    <child link="right_foot_extendable"/>
+    <origin rpy="1.5708 0 0" xyz="0 -0.25 0"/>
   </joint>
 </robot>
 

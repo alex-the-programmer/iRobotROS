@@ -109,10 +109,16 @@
                 <xacro:foot_heel_geometry/>
             </collision>
         </link>
-        <joint name="${position}_len_ankle_to_${position}_foot_heel" type="fixed">
+        <joint name="${position}_leg_ankle_to_${position}_foot_heel" type="fixed">
             <parent link="${position}_leg_ankle"/>
             <child link="${position}_foot_heel"/>
             <origin xyz="0 0.1 -0.2"/>
+        </joint>
+        <xacro:expandable name="${position}_foot_extendable"/>
+        <joint name="${position}_foot_heel_to_${position}_foot_extendable" type="fixed">
+            <parent link="${position}_foot_heel"/>
+            <child link="${position}_foot_extendable"/>
+            <origin xyz="0 -0.25 0" rpy="1.5708 0 0"/>
         </joint>
     </xacro:macro>
     <xacro:leg position="left" parent="base_link" x_shift="0.09"/>
