@@ -386,6 +386,23 @@
     <child link="left_arm_left_gripper_middle_knuckle"/>
     <origin rpy="0 -1.5708 0" xyz="-0.02 0 0.02"/>
   </joint>
+  <link name="left_arm_left_gripper_bottom_knuckle">
+    <visual>
+      <geometry>
+        <cylinder length="0.05" radius="0.005"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.05" radius="0.005"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="left_arm_left_gripper_middle_knuckle_to_left_arm_left_gripper_bottom_knuckle" type="fixed">
+    <parent link="left_arm_left_gripper_middle_knuckle"/>
+    <child link="left_arm_left_gripper_bottom_knuckle"/>
+    <origin rpy="0 0.785398 0" xyz="0 0 0.02"/>
+  </joint>
   <link name="right_arm_shoulder">
     <visual>
       <geometry>
@@ -470,6 +487,23 @@
     <parent link="right_arm_left_gripper_top_knuckle"/>
     <child link="right_arm_left_gripper_middle_knuckle"/>
     <origin rpy="0 -1.5708 0" xyz="-0.02 0 0.02"/>
+  </joint>
+  <link name="right_arm_left_gripper_bottom_knuckle">
+    <visual>
+      <geometry>
+        <cylinder length="0.05" radius="0.005"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.05" radius="0.005"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="right_arm_left_gripper_middle_knuckle_to_right_arm_left_gripper_bottom_knuckle" type="fixed">
+    <parent link="right_arm_left_gripper_middle_knuckle"/>
+    <child link="right_arm_left_gripper_bottom_knuckle"/>
+    <origin rpy="0 0.785398 0" xyz="0 0 0.02"/>
   </joint>
 </robot>
 
