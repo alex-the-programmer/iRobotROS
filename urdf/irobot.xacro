@@ -33,6 +33,22 @@
         </link>
     </xacro:macro>
 
+    <xacro:macro name="wheel" params="name">
+        <link name="${name}">
+            <xacro:macro name="wheel_geometry">
+                <geometry>
+                    <cylinder length="0.05" radius="0.05"/>
+                </geometry>
+            </xacro:macro>
+            <visual>
+                <xacro:wheel_geometry/>
+            </visual>
+            <collision>
+                <xacro:wheel_geometry/>
+            </collision>
+        </link>
+    </xacro:macro>
+
     <!-- The base of the robot. All other parts including legs and extendable upper body is attached to the base.
        Base contains the battery and the main computer and is the haviest part of the robot. -->
     <link name="base_link">
@@ -139,6 +155,14 @@
             <child link="${position}_foot_ball"/>
             <!--  move rpy to the actual part instead of the joint           -->
             <origin xyz="0 0 0.2" rpy="1.5708 0 0"/>
+        </joint>
+        <!-- rear wheel        -->
+        <xacro:wheel name="${position}_rear_wheel"/>
+        <joint name="${position}_foot_heel_to_${position}_rear_wheel" type="fixed">
+            <parent link="${position}_foot_heel"/>
+            <child link="${position}_rear_wheel"/>
+            <!--  move rpy to the actual part instead of the joint           -->
+            <origin xyz="0 0 -0.05" rpy="0 1.5708 0"/>
         </joint>
     </xacro:macro>
     <xacro:leg position="left" parent="base_link" x_shift="0.09"/>
