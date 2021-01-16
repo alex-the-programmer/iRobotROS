@@ -120,6 +120,26 @@
             <child link="${position}_foot_extendable"/>
             <origin xyz="0 -0.25 0" rpy="1.5708 0 0"/>
         </joint>
+        <!-- foot ball-->
+        <link name="${position}_foot_ball">
+            <xacro:macro name="foot_ball_geometry">
+                <geometry>
+                    <box size="0.1 0.2 0.1"></box>
+                </geometry>
+            </xacro:macro>
+            <visual>
+                <xacro:foot_ball_geometry/>
+            </visual>
+            <collision>
+                <xacro:foot_ball_geometry/>
+            </collision>
+        </link>
+        <joint name="${position}_foot_extendable_to_${position}_foot_ball" type="fixed">
+            <parent link="${position}_foot_extendable"/>
+            <child link="${position}_foot_ball"/>
+            <!--  move rpy to the actual part instead of the joint           -->
+            <origin xyz="0 0 0.2" rpy="1.5708 0 0"/>
+        </joint>
     </xacro:macro>
     <xacro:leg position="left" parent="base_link" x_shift="0.09"/>
     <xacro:leg position="right" parent="base_link" x_shift="-0.09"/>
