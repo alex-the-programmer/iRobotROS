@@ -164,6 +164,15 @@
             <!--  move rpy to the actual part instead of the joint           -->
             <origin xyz="0 0 -0.05" rpy="0 1.5708 0"/>
         </joint>
+
+        <!-- front wheel        -->
+        <xacro:wheel name="${position}_front_wheel"/>
+        <joint name="${position}_foot_ball_to_${position}_front_wheel" type="fixed">
+            <parent link="${position}_foot_ball"/>
+            <child link="${position}_front_wheel"/>
+            <!--  move rpy to the actual part instead of the joint           -->
+            <origin xyz="0 0 0.05" rpy="0 1.5708 0"/>
+        </joint>
     </xacro:macro>
     <xacro:leg position="left" parent="base_link" x_shift="0.09"/>
     <xacro:leg position="right" parent="base_link" x_shift="-0.09"/>
