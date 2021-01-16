@@ -318,6 +318,23 @@
     <child link="left_arm_shoulder"/>
     <origin rpy="1.5708 0 0.523599" xyz="0.25 -0.1 0"/>
   </joint>
+  <link name="left_arm_wrist">
+    <visual>
+      <geometry>
+        <cylinder length="0.3" radius="0.02"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.3" radius="0.02"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="left_arm_shoulder_to_left_arm_wrist" type="fixed">
+    <parent link="left_arm_shoulder"/>
+    <child link="left_arm_wrist"/>
+    <origin xyz="0 0 0.31"/>
+  </joint>
   <link name="right_arm_shoulder">
     <visual>
       <geometry>
@@ -334,6 +351,23 @@
     <parent link="upper_body_link"/>
     <child link="right_arm_shoulder"/>
     <origin rpy="1.5708 0 -0.523599" xyz="-0.25 -0.1 0"/>
+  </joint>
+  <link name="right_arm_wrist">
+    <visual>
+      <geometry>
+        <cylinder length="0.3" radius="0.02"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.3" radius="0.02"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="right_arm_shoulder_to_right_arm_wrist" type="fixed">
+    <parent link="right_arm_shoulder"/>
+    <child link="right_arm_wrist"/>
+    <origin xyz="0 0 0.31"/>
   </joint>
 </robot>
 

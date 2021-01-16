@@ -179,11 +179,20 @@
 
     <!-- arms    -->
     <xacro:macro name="arm" params="position parent x_shift spin">
+        <!-- shoulder        -->
         <xacro:pipe name="${position}_arm_shoulder" length="0.3"/>
         <joint name="${parent}_to_${position}_arm_shoulder" type="fixed">
             <parent link="${parent}"/>
             <child link="${position}_arm_shoulder"/>
             <origin xyz="${x_shift} -0.1 0" rpy="1.5708 0 ${spin*0.523599}"/>
+        </joint>
+
+        <!-- writs        -->
+        <xacro:pipe name="${position}_arm_wrist" length="0.3"/>
+        <joint name="${position}_arm_shoulder_to_${position}_arm_wrist" type="fixed">
+            <parent link="${position}_arm_shoulder"/>
+            <child link="${position}_arm_wrist"/>
+            <origin xyz="0 0 0.31"/>
         </joint>
     </xacro:macro>
     <xacro:arm position="left" parent="upper_body_link" x_shift="0.25" spin="1"/>
