@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="firefighter">
+    <!--    COMMON DEFINITION-->
+    <xacro:macro name="expandable" params="name">
+        <link name="${name}">
+            <xacro:macro name="expandable_geometry">
+                <geometry>
+                    <cylinder length="0.2" radius="0.02"/>
+                </geometry>
+            </xacro:macro>
+            <visual>
+                <xacro:expandable_geometry/>
+            </visual>
+            <collision>
+                <xacro:expandable_geometry/>
+            </collision>
+        </link>
+    </xacro:macro>
+
+    <xacro:macro name="pipe" params="name length">
+        <link name="${name}">
+            <xacro:macro name="pipe_geometry">
+                <geometry>
+                    <cylinder length="${length}" radius="0.02"/>
+                </geometry>
+            </xacro:macro>
+            <visual>
+                <xacro:pipe_geometry/>
+            </visual>
+            <collision>
+                <xacro:pipe_geometry/>
+            </collision>
+        </link>
+    </xacro:macro>
+
+    <!-- The base of the robot. All other parts including legs and extendable upper body is attached to the base.
+       Base contains the battery and the main computer and is the haviest part of the robot. -->
+    <link name="base_link">
+        <xacro:macro name="base_link_geometry">
+            <geometry>
+                <box size="0.3 0.4 0.4"></box>
+            </geometry>
+        </xacro:macro>
+        <visual>
+            <xacro:base_link_geometry/>
+        </visual>
+        <collision>
+            <xacro:base_link_geometry/>
+        </collision>
+    </link>
+
+    <!-- expandable for upper body    -->
+    <xacro:expandable name="expandable_from_base_link_to_upper_body"/>
+    <joint name="base_link_to_expandable_to_upper_body" type="fixed">
+        <parent link="base_link"/>
+        <child link="expandable_from_base_link_to_upper_body"/>
+        <origin xyz="0 0 0.3 "/>
+    </joint>
+
+    <!-- upper body    -->
+    <link name="upper_body_link">
+        <xacro:macro name="upper_body_geometry">
+            <geometry>
+                <box size="0.3 0.4 0.2"></box>
+            </geometry>
+        </xacro:macro>
+        <visual>
+            <xacro:upper_body_geometry/>
+        </visual>
+        <collision>
+            <xacro:upper_body_geometry/>
+        </collision>
+    </link>
+    <joint name="expandable_from_base_link_to_upper_body_to_upper_body" type="fixed">
+        <parent link="expandable_from_base_link_to_upper_body"/>
+        <child link="upper_body_link"/>
+        <origin xyz="0 0 0.2"/>
+    </joint>
+
+    <!-- legs    -->
+    <xacro:macro name="leg" params="position parent x_shift">
+        <!-- hip       -->
+        <xacro:pipe name="${position}_leg_hip" length="0.3"/>
+        <joint name="${parent}_to_${position}_leg_hip" type="fixed">
+            <parent link="${parent}"/>
+            <child link="${position}_leg_hip"/>
+            <origin xyz="${x_shift} 0 -0.35"/>
+        </joint>
+
+        <!-- ankle        -->
+        <xacro:pipe name="${position}_leg_ankle" length="0.3"/>
+        <joint name="${position}_leg_hip_to_${position}_leg_ankle" type="fixed">
+            <parent link="${position}_leg_hip"/>
+            <child link="${position}_leg_ankle"/>
+            <origin xyz="0 0 -0.31"/>
+        </joint>
+
+        <!-- foot heel-->
+        <link name="${position}_foot_heel">
+            <xacro:macro name="foot_heel_geometry">
+                <geometry>
+                    <box size="0.1 0.3 0.1"></box>
+                </geometry>
+            </xacro:macro>
+            <visual>
+                <xacro:foot_heel_geometry/>
+            </visual>
+            <collision>
+                <xacro:foot_heel_geometry/>
+            </collision>
+        </link>
+        <joint name="${position}_len_ankle_to_${position}_foot_heel" type="fixed">
+            <parent link="${position}_leg_ankle"/>
+            <child link="${position}_foot_heel"/>
+            <origin xyz="0 0.1 -0.2"/>
+        </joint>
+    </xacro:macro>
+    <xacro:leg position="left" parent="base_link" x_shift="0.09"/>
+    <xacro:leg position="right" parent="base_link" x_shift="-0.09"/>
+</robot>
