@@ -17,11 +17,11 @@
         </link>
     </xacro:macro>
 
-    <xacro:macro name="pipe" params="name length">
+    <xacro:macro name="pipe" params="name length radius=0.02">
         <link name="${name}">
             <xacro:macro name="pipe_geometry">
                 <geometry>
-                    <cylinder length="${length}" radius="0.02"/>
+                    <cylinder length="${length}" radius="${radius}"/>
                 </geometry>
             </xacro:macro>
             <visual>
@@ -194,6 +194,27 @@
             <child link="${position}_arm_wrist"/>
             <origin xyz="0 0 0.31"/>
         </joint>
+
+        <!-- palms        -->
+        <xacro:pipe name="${position}_arm_palm" length="0.05"/>
+        <joint name="${position}_arm_wrist_to_${position}_arm_palm" type="fixed">
+            <parent link="${position}_arm_wrist"/>
+            <child link="${position}_arm_palm"/>
+            <origin xyz="0 0 0.19"/>
+        </joint>
+
+        <!-- gripper        -->
+        <xacro:macro name="gripper" params="arm_position gripper_position parent pitch">
+            <!-- top knuckle           -->
+            <xacro:pipe name="${arm_position}_arm_${gripper_position}_gripper_top_knuckle" length="0.05" radius="0.005"/>
+           <joint name="${parent}_${arm_position}_arm_${gripper_position}_gripper_top_knuckle" type="fixed">
+                <parent link="${parent}"/>
+                <child link="${arm_position}_arm_${gripper_position}_gripper_top_knuckle"/>
+                <origin xyz="0.03 0 0.05" rpy="0 ${pitch} 0"/>
+            </joint>
+
+        </xacro:macro>
+        <xacro:gripper parent="${position}_arm_palm" arm_position="${position}" gripper_position="left" pitch="0.523599"/>
     </xacro:macro>
     <xacro:arm position="left" parent="upper_body_link" x_shift="0.25" spin="1"/>
     <xacro:arm position="right" parent="upper_body_link" x_shift="-0.25" spin="-1"/>

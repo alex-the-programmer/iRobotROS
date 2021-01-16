@@ -335,6 +335,40 @@
     <child link="left_arm_wrist"/>
     <origin xyz="0 0 0.31"/>
   </joint>
+  <link name="left_arm_palm">
+    <visual>
+      <geometry>
+        <cylinder length="0.05" radius="0.02"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.05" radius="0.02"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="left_arm_wrist_to_left_arm_palm" type="fixed">
+    <parent link="left_arm_wrist"/>
+    <child link="left_arm_palm"/>
+    <origin xyz="0 0 0.19"/>
+  </joint>
+  <link name="left_arm_left_gripper_top_knuckle">
+    <visual>
+      <geometry>
+        <cylinder length="0.05" radius="0.005"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.05" radius="0.005"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="left_arm_palm_left_arm_left_gripper_top_knuckle" type="fixed">
+    <parent link="left_arm_palm"/>
+    <child link="left_arm_left_gripper_top_knuckle"/>
+    <origin rpy="0 0.523599 0" xyz="0.03 0 0.05"/>
+  </joint>
   <link name="right_arm_shoulder">
     <visual>
       <geometry>
@@ -368,6 +402,40 @@
     <parent link="right_arm_shoulder"/>
     <child link="right_arm_wrist"/>
     <origin xyz="0 0 0.31"/>
+  </joint>
+  <link name="right_arm_palm">
+    <visual>
+      <geometry>
+        <cylinder length="0.05" radius="0.02"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.05" radius="0.02"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="right_arm_wrist_to_right_arm_palm" type="fixed">
+    <parent link="right_arm_wrist"/>
+    <child link="right_arm_palm"/>
+    <origin xyz="0 0 0.19"/>
+  </joint>
+  <link name="right_arm_left_gripper_top_knuckle">
+    <visual>
+      <geometry>
+        <cylinder length="0.05" radius="0.005"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.05" radius="0.005"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="right_arm_palm_right_arm_left_gripper_top_knuckle" type="fixed">
+    <parent link="right_arm_palm"/>
+    <child link="right_arm_left_gripper_top_knuckle"/>
+    <origin rpy="0 0.523599 0" xyz="0.03 0 0.05"/>
   </joint>
 </robot>
 
