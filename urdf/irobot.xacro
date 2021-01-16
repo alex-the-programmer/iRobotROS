@@ -213,6 +213,13 @@
                 <origin xyz="0.03 0 0.05" rpy="0 ${pitch} 0"/>
             </joint>
 
+            <!-- middle knuckle           -->
+            <xacro:pipe name="${arm_position}_arm_${gripper_position}_gripper_middle_knuckle" length="0.05" radius="0.005"/>
+           <joint name="${arm_position}_arm_${gripper_position}_gripper_top_knuckle_to_${arm_position}_arm_${gripper_position}_gripper_middle_knuckle" type="fixed">
+                <parent link="${arm_position}_arm_${gripper_position}_gripper_top_knuckle"/>
+                <child link="${arm_position}_arm_${gripper_position}_gripper_middle_knuckle"/>
+                <origin xyz="-0.02 0 0.02" rpy="0 -1.5708 0"/>
+            </joint>
         </xacro:macro>
         <xacro:gripper parent="${position}_arm_palm" arm_position="${position}" gripper_position="left" pitch="0.523599"/>
     </xacro:macro>
