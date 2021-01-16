@@ -176,4 +176,16 @@
     </xacro:macro>
     <xacro:leg position="left" parent="base_link" x_shift="0.09"/>
     <xacro:leg position="right" parent="base_link" x_shift="-0.09"/>
+
+    <!-- arms    -->
+    <xacro:macro name="arm" params="position parent x_shift spin">
+        <xacro:pipe name="${position}_arm_shoulder" length="0.3"/>
+        <joint name="${parent}_to_${position}_arm_shoulder" type="fixed">
+            <parent link="${parent}"/>
+            <child link="${position}_arm_shoulder"/>
+            <origin xyz="${x_shift} -0.1 0" rpy="1.5708 0 ${spin*0.523599}"/>
+        </joint>
+    </xacro:macro>
+    <xacro:arm position="left" parent="upper_body_link" x_shift="0.25" spin="1"/>
+    <xacro:arm position="right" parent="upper_body_link" x_shift="-0.25" spin="-1"/>
 </robot>
