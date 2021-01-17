@@ -248,4 +248,26 @@
     </xacro:macro>
     <xacro:arm position="left" parent="upper_body_link" x_shift="0.17" spin="1"/>
     <xacro:arm position="right" parent="upper_body_link" x_shift="-0.17" spin="-1" pitch="3.14159"/>
+
+    <!-- camera box   -->
+    <link name="camera_box">
+         <xacro:macro name="camera_box_geometry">
+            <geometry>
+                <box size="0.1 0.1 0.1"></box>
+            </geometry>
+             <origin xyz="0 0.05 0.05"/>
+        </xacro:macro>
+        <visual>
+            <xacro:camera_box_geometry/>
+            <material name="blue"/>
+        </visual>
+        <collision>
+            <xacro:camera_box_geometry/>
+        </collision>
+    </link>
+    <joint name="upper_body_link_to_camera_box" type="fixed">
+        <parent link="upper_body_link"/>
+        <child link="camera_box"/>
+        <origin xyz="0 -0.2 0.1"/>
+    </joint>
 </robot>
