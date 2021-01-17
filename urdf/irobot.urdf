@@ -4,6 +4,15 @@
 <!-- |    EDITING THIS FILE BY HAND IS NOT RECOMMENDED                                 | -->
 <!-- =================================================================================== -->
 <robot name="firefighter">
+  <material name="aluminium">
+    <color rgba="1 0 0 1"/>
+  </material>
+  <material name="blue">
+    <color rgba="0 0 1 1"/>
+  </material>
+  <material name="black">
+    <color rgba="1 0 0 1"/>
+  </material>
   <!-- The base of the robot. All other parts including legs and extendable upper body is attached to the base.
        Base contains the battery and the main computer and is the haviest part of the robot. -->
   <link name="base_link">
@@ -11,6 +20,7 @@
       <geometry>
         <box size="0.3 0.4 0.4"/>
       </geometry>
+      <material name="blue"/>
     </visual>
     <collision>
       <geometry>
@@ -23,17 +33,20 @@
       <geometry>
         <cylinder length="0.2" radius="0.02"/>
       </geometry>
+      <origin xyz="0 0 -0.1"/>
+      <material name="aluminium"/>
     </visual>
     <collision>
       <geometry>
         <cylinder length="0.2" radius="0.02"/>
       </geometry>
+      <origin xyz="0 0 -0.1"/>
     </collision>
   </link>
   <joint name="base_link_to_expandable_to_upper_body" type="fixed">
     <parent link="base_link"/>
     <child link="expandable_from_base_link_to_upper_body"/>
-    <origin xyz="0 0 0.3 "/>
+    <origin xyz="0 0 0.4 "/>
   </joint>
   <!-- upper body    -->
   <link name="upper_body_link">
@@ -41,6 +54,7 @@
       <geometry>
         <box size="0.3 0.4 0.2"/>
       </geometry>
+      <material name="blue"/>
     </visual>
     <collision>
       <geometry>
@@ -51,35 +65,41 @@
   <joint name="expandable_from_base_link_to_upper_body_to_upper_body" type="fixed">
     <parent link="expandable_from_base_link_to_upper_body"/>
     <child link="upper_body_link"/>
-    <origin xyz="0 0 0.2"/>
+    <origin xyz="0 0 0.1"/>
   </joint>
   <link name="left_leg_hip">
     <visual>
       <geometry>
         <cylinder length="0.3" radius="0.02"/>
       </geometry>
+      <origin xyz="0 0 -0.15"/>
+      <material name="aluminium"/>
     </visual>
     <collision>
       <geometry>
         <cylinder length="0.3" radius="0.02"/>
       </geometry>
+      <origin xyz="0 0 -0.15"/>
     </collision>
   </link>
   <joint name="base_link_to_left_leg_hip" type="fixed">
     <parent link="base_link"/>
     <child link="left_leg_hip"/>
-    <origin xyz="0.09 0 -0.35"/>
+    <origin xyz="0.09 0 -0.2"/>
   </joint>
   <link name="left_leg_ankle">
     <visual>
       <geometry>
         <cylinder length="0.3" radius="0.02"/>
       </geometry>
+      <origin xyz="0 0 -0.15"/>
+      <material name="aluminium"/>
     </visual>
     <collision>
       <geometry>
         <cylinder length="0.3" radius="0.02"/>
       </geometry>
+      <origin xyz="0 0 -0.15"/>
     </collision>
   </link>
   <joint name="left_leg_hip_to_left_leg_ankle" type="fixed">
@@ -93,34 +113,40 @@
       <geometry>
         <box size="0.1 0.3 0.1"/>
       </geometry>
+      <origin xyz="0 0 -0.05"/>
+      <material name="blue"/>
     </visual>
     <collision>
       <geometry>
         <box size="0.1 0.3 0.1"/>
       </geometry>
+      <origin xyz="0 0 -0.05"/>
     </collision>
   </link>
   <joint name="left_leg_ankle_to_left_foot_heel" type="fixed">
     <parent link="left_leg_ankle"/>
     <child link="left_foot_heel"/>
-    <origin xyz="0 0.1 -0.2"/>
+    <origin xyz="0 0.1 -0.31"/>
   </joint>
   <link name="left_foot_extendable">
     <visual>
       <geometry>
         <cylinder length="0.2" radius="0.02"/>
       </geometry>
+      <origin xyz="0 0 -0.1"/>
+      <material name="aluminium"/>
     </visual>
     <collision>
       <geometry>
         <cylinder length="0.2" radius="0.02"/>
       </geometry>
+      <origin xyz="0 0 -0.1"/>
     </collision>
   </link>
   <joint name="left_foot_heel_to_left_foot_extendable" type="fixed">
     <parent link="left_foot_heel"/>
     <child link="left_foot_extendable"/>
-    <origin rpy="1.5708 0 0" xyz="0 -0.25 0"/>
+    <origin rpy="1.5708 0 0" xyz="0 -0.35 -0.05"/>
   </joint>
   <!-- foot ball-->
   <link name="left_foot_ball">
@@ -128,24 +154,28 @@
       <geometry>
         <box size="0.1 0.2 0.1"/>
       </geometry>
+      <origin xyz="0 0 0.05"/>
+      <material name="blue"/>
     </visual>
     <collision>
       <geometry>
         <box size="0.1 0.2 0.1"/>
       </geometry>
+      <origin xyz="0 0 0.05"/>
     </collision>
   </link>
   <joint name="left_foot_extendable_to_left_foot_ball" type="fixed">
     <parent link="left_foot_extendable"/>
     <child link="left_foot_ball"/>
     <!--  move rpy to the actual part instead of the joint           -->
-    <origin rpy="1.5708 0 0" xyz="0 0 0.2"/>
+    <origin rpy="1.5708 0 0" xyz="0 0.05 0.1"/>
   </joint>
   <link name="left_rear_wheel">
     <visual>
       <geometry>
         <cylinder length="0.05" radius="0.05"/>
       </geometry>
+      <material name="black"/>
     </visual>
     <collision>
       <geometry>
@@ -157,13 +187,14 @@
     <parent link="left_foot_heel"/>
     <child link="left_rear_wheel"/>
     <!--  move rpy to the actual part instead of the joint           -->
-    <origin rpy="0 1.5708 0" xyz="0 0 -0.05"/>
+    <origin rpy="0 1.5708 0" xyz="0 0 -0.1"/>
   </joint>
   <link name="left_front_wheel">
     <visual>
       <geometry>
         <cylinder length="0.05" radius="0.05"/>
       </geometry>
+      <material name="black"/>
     </visual>
     <collision>
       <geometry>
@@ -175,35 +206,41 @@
     <parent link="left_foot_ball"/>
     <child link="left_front_wheel"/>
     <!--  move rpy to the actual part instead of the joint           -->
-    <origin rpy="0 1.5708 0" xyz="0 0 0.05"/>
+    <origin rpy="0 1.5708 0" xyz="0 0 0.1"/>
   </joint>
   <link name="right_leg_hip">
     <visual>
       <geometry>
         <cylinder length="0.3" radius="0.02"/>
       </geometry>
+      <origin xyz="0 0 -0.15"/>
+      <material name="aluminium"/>
     </visual>
     <collision>
       <geometry>
         <cylinder length="0.3" radius="0.02"/>
       </geometry>
+      <origin xyz="0 0 -0.15"/>
     </collision>
   </link>
   <joint name="base_link_to_right_leg_hip" type="fixed">
     <parent link="base_link"/>
     <child link="right_leg_hip"/>
-    <origin xyz="-0.09 0 -0.35"/>
+    <origin xyz="-0.09 0 -0.2"/>
   </joint>
   <link name="right_leg_ankle">
     <visual>
       <geometry>
         <cylinder length="0.3" radius="0.02"/>
       </geometry>
+      <origin xyz="0 0 -0.15"/>
+      <material name="aluminium"/>
     </visual>
     <collision>
       <geometry>
         <cylinder length="0.3" radius="0.02"/>
       </geometry>
+      <origin xyz="0 0 -0.15"/>
     </collision>
   </link>
   <joint name="right_leg_hip_to_right_leg_ankle" type="fixed">
@@ -217,34 +254,40 @@
       <geometry>
         <box size="0.1 0.3 0.1"/>
       </geometry>
+      <origin xyz="0 0 -0.05"/>
+      <material name="blue"/>
     </visual>
     <collision>
       <geometry>
         <box size="0.1 0.3 0.1"/>
       </geometry>
+      <origin xyz="0 0 -0.05"/>
     </collision>
   </link>
   <joint name="right_leg_ankle_to_right_foot_heel" type="fixed">
     <parent link="right_leg_ankle"/>
     <child link="right_foot_heel"/>
-    <origin xyz="0 0.1 -0.2"/>
+    <origin xyz="0 0.1 -0.31"/>
   </joint>
   <link name="right_foot_extendable">
     <visual>
       <geometry>
         <cylinder length="0.2" radius="0.02"/>
       </geometry>
+      <origin xyz="0 0 -0.1"/>
+      <material name="aluminium"/>
     </visual>
     <collision>
       <geometry>
         <cylinder length="0.2" radius="0.02"/>
       </geometry>
+      <origin xyz="0 0 -0.1"/>
     </collision>
   </link>
   <joint name="right_foot_heel_to_right_foot_extendable" type="fixed">
     <parent link="right_foot_heel"/>
     <child link="right_foot_extendable"/>
-    <origin rpy="1.5708 0 0" xyz="0 -0.25 0"/>
+    <origin rpy="1.5708 0 0" xyz="0 -0.35 -0.05"/>
   </joint>
   <!-- foot ball-->
   <link name="right_foot_ball">
@@ -252,24 +295,28 @@
       <geometry>
         <box size="0.1 0.2 0.1"/>
       </geometry>
+      <origin xyz="0 0 0.05"/>
+      <material name="blue"/>
     </visual>
     <collision>
       <geometry>
         <box size="0.1 0.2 0.1"/>
       </geometry>
+      <origin xyz="0 0 0.05"/>
     </collision>
   </link>
   <joint name="right_foot_extendable_to_right_foot_ball" type="fixed">
     <parent link="right_foot_extendable"/>
     <child link="right_foot_ball"/>
     <!--  move rpy to the actual part instead of the joint           -->
-    <origin rpy="1.5708 0 0" xyz="0 0 0.2"/>
+    <origin rpy="1.5708 0 0" xyz="0 0.05 0.1"/>
   </joint>
   <link name="right_rear_wheel">
     <visual>
       <geometry>
         <cylinder length="0.05" radius="0.05"/>
       </geometry>
+      <material name="black"/>
     </visual>
     <collision>
       <geometry>
@@ -281,13 +328,14 @@
     <parent link="right_foot_heel"/>
     <child link="right_rear_wheel"/>
     <!--  move rpy to the actual part instead of the joint           -->
-    <origin rpy="0 1.5708 0" xyz="0 0 -0.05"/>
+    <origin rpy="0 1.5708 0" xyz="0 0 -0.1"/>
   </joint>
   <link name="right_front_wheel">
     <visual>
       <geometry>
         <cylinder length="0.05" radius="0.05"/>
       </geometry>
+      <material name="black"/>
     </visual>
     <collision>
       <geometry>
@@ -299,35 +347,41 @@
     <parent link="right_foot_ball"/>
     <child link="right_front_wheel"/>
     <!--  move rpy to the actual part instead of the joint           -->
-    <origin rpy="0 1.5708 0" xyz="0 0 0.05"/>
+    <origin rpy="0 1.5708 0" xyz="0 0 0.1"/>
   </joint>
   <link name="left_arm_shoulder">
     <visual>
       <geometry>
         <cylinder length="0.3" radius="0.02"/>
       </geometry>
+      <origin xyz="0 0 0.15"/>
+      <material name="aluminium"/>
     </visual>
     <collision>
       <geometry>
         <cylinder length="0.3" radius="0.02"/>
       </geometry>
+      <origin xyz="0 0 0.15"/>
     </collision>
   </link>
   <joint name="upper_body_link_to_left_arm_shoulder" type="fixed">
     <parent link="upper_body_link"/>
     <child link="left_arm_shoulder"/>
-    <origin rpy="1.5708 0 0.523599" xyz="0.25 -0.1 0"/>
+    <origin rpy="1.5708 0 0.523599" xyz="0.17 0 0"/>
   </joint>
   <link name="left_arm_wrist">
     <visual>
       <geometry>
         <cylinder length="0.3" radius="0.02"/>
       </geometry>
+      <origin xyz="0 0 0.15"/>
+      <material name="aluminium"/>
     </visual>
     <collision>
       <geometry>
         <cylinder length="0.3" radius="0.02"/>
       </geometry>
+      <origin xyz="0 0 0.15"/>
     </collision>
   </link>
   <joint name="left_arm_shoulder_to_left_arm_wrist" type="fixed">
@@ -340,96 +394,174 @@
       <geometry>
         <cylinder length="0.05" radius="0.02"/>
       </geometry>
+      <origin xyz="0 0 0.025"/>
+      <material name="aluminium"/>
     </visual>
     <collision>
       <geometry>
         <cylinder length="0.05" radius="0.02"/>
       </geometry>
+      <origin xyz="0 0 0.025"/>
     </collision>
   </link>
   <joint name="left_arm_wrist_to_left_arm_palm" type="fixed">
     <parent link="left_arm_wrist"/>
     <child link="left_arm_palm"/>
-    <origin xyz="0 0 0.19"/>
+    <origin xyz="0 0 0.31"/>
   </joint>
   <link name="left_arm_left_gripper_top_knuckle">
     <visual>
       <geometry>
         <cylinder length="0.05" radius="0.005"/>
       </geometry>
+      <origin xyz="0 0 0.025"/>
+      <material name="aluminium"/>
     </visual>
     <collision>
       <geometry>
         <cylinder length="0.05" radius="0.005"/>
       </geometry>
+      <origin xyz="0 0 0.025"/>
     </collision>
   </link>
   <joint name="left_arm_palm_left_arm_left_gripper_top_knuckle" type="fixed">
     <parent link="left_arm_palm"/>
     <child link="left_arm_left_gripper_top_knuckle"/>
-    <origin rpy="0 0.523599 0" xyz="0.03 0 0.05"/>
+    <origin rpy="0 0.523599 0" xyz="0 0 0.05"/>
   </joint>
   <link name="left_arm_left_gripper_middle_knuckle">
     <visual>
       <geometry>
         <cylinder length="0.05" radius="0.005"/>
       </geometry>
+      <origin xyz="0 0 0.025"/>
+      <material name="aluminium"/>
     </visual>
     <collision>
       <geometry>
         <cylinder length="0.05" radius="0.005"/>
       </geometry>
+      <origin xyz="0 0 0.025"/>
     </collision>
   </link>
   <joint name="left_arm_left_gripper_top_knuckle_to_left_arm_left_gripper_middle_knuckle" type="fixed">
     <parent link="left_arm_left_gripper_top_knuckle"/>
     <child link="left_arm_left_gripper_middle_knuckle"/>
-    <origin rpy="0 -1.5708 0" xyz="-0.02 0 0.02"/>
+    <origin rpy="0 -1.047201225112 0" xyz="0 0 0.05"/>
   </joint>
-  <link name="left_arm_left_gripper_bottom_knuckle">
+  <link name="left_arm_right_gripper_top_knuckle">
     <visual>
       <geometry>
         <cylinder length="0.05" radius="0.005"/>
       </geometry>
+      <origin xyz="0 0 0.025"/>
+      <material name="aluminium"/>
     </visual>
     <collision>
       <geometry>
         <cylinder length="0.05" radius="0.005"/>
       </geometry>
+      <origin xyz="0 0 0.025"/>
     </collision>
   </link>
-  <joint name="left_arm_left_gripper_middle_knuckle_to_left_arm_left_gripper_bottom_knuckle" type="fixed">
-    <parent link="left_arm_left_gripper_middle_knuckle"/>
-    <child link="left_arm_left_gripper_bottom_knuckle"/>
-    <origin rpy="0 0.785398 0" xyz="0 0 0.02"/>
+  <joint name="left_arm_palm_left_arm_right_gripper_top_knuckle" type="fixed">
+    <parent link="left_arm_palm"/>
+    <child link="left_arm_right_gripper_top_knuckle"/>
+    <origin rpy="0 0.523599 3.14159" xyz="0 0 0.05"/>
+  </joint>
+  <link name="left_arm_right_gripper_middle_knuckle">
+    <visual>
+      <geometry>
+        <cylinder length="0.05" radius="0.005"/>
+      </geometry>
+      <origin xyz="0 0 0.025"/>
+      <material name="aluminium"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.05" radius="0.005"/>
+      </geometry>
+      <origin xyz="0 0 0.025"/>
+    </collision>
+  </link>
+  <joint name="left_arm_right_gripper_top_knuckle_to_left_arm_right_gripper_middle_knuckle" type="fixed">
+    <parent link="left_arm_right_gripper_top_knuckle"/>
+    <child link="left_arm_right_gripper_middle_knuckle"/>
+    <origin rpy="0 -1.047201225112 0" xyz="0 0 0.05"/>
+  </joint>
+  <link name="left_arm_bottom_gripper_top_knuckle">
+    <visual>
+      <geometry>
+        <cylinder length="0.05" radius="0.005"/>
+      </geometry>
+      <origin xyz="0 0 0.025"/>
+      <material name="aluminium"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.05" radius="0.005"/>
+      </geometry>
+      <origin xyz="0 0 0.025"/>
+    </collision>
+  </link>
+  <joint name="left_arm_palm_left_arm_bottom_gripper_top_knuckle" type="fixed">
+    <parent link="left_arm_palm"/>
+    <child link="left_arm_bottom_gripper_top_knuckle"/>
+    <origin rpy="0 0.523599 -1.5708" xyz="0 0 0.05"/>
+  </joint>
+  <link name="left_arm_bottom_gripper_middle_knuckle">
+    <visual>
+      <geometry>
+        <cylinder length="0.05" radius="0.005"/>
+      </geometry>
+      <origin xyz="0 0 0.025"/>
+      <material name="aluminium"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.05" radius="0.005"/>
+      </geometry>
+      <origin xyz="0 0 0.025"/>
+    </collision>
+  </link>
+  <joint name="left_arm_bottom_gripper_top_knuckle_to_left_arm_bottom_gripper_middle_knuckle" type="fixed">
+    <parent link="left_arm_bottom_gripper_top_knuckle"/>
+    <child link="left_arm_bottom_gripper_middle_knuckle"/>
+    <origin rpy="0 -1.047201225112 0" xyz="0 0 0.05"/>
   </joint>
   <link name="right_arm_shoulder">
     <visual>
       <geometry>
         <cylinder length="0.3" radius="0.02"/>
       </geometry>
+      <origin xyz="0 0 0.15"/>
+      <material name="aluminium"/>
     </visual>
     <collision>
       <geometry>
         <cylinder length="0.3" radius="0.02"/>
       </geometry>
+      <origin xyz="0 0 0.15"/>
     </collision>
   </link>
   <joint name="upper_body_link_to_right_arm_shoulder" type="fixed">
     <parent link="upper_body_link"/>
     <child link="right_arm_shoulder"/>
-    <origin rpy="1.5708 0 -0.523599" xyz="-0.25 -0.1 0"/>
+    <origin rpy="1.5708 3.14159 -0.523599" xyz="-0.17 0 0"/>
   </joint>
   <link name="right_arm_wrist">
     <visual>
       <geometry>
         <cylinder length="0.3" radius="0.02"/>
       </geometry>
+      <origin xyz="0 0 0.15"/>
+      <material name="aluminium"/>
     </visual>
     <collision>
       <geometry>
         <cylinder length="0.3" radius="0.02"/>
       </geometry>
+      <origin xyz="0 0 0.15"/>
     </collision>
   </link>
   <joint name="right_arm_shoulder_to_right_arm_wrist" type="fixed">
@@ -442,68 +574,140 @@
       <geometry>
         <cylinder length="0.05" radius="0.02"/>
       </geometry>
+      <origin xyz="0 0 0.025"/>
+      <material name="aluminium"/>
     </visual>
     <collision>
       <geometry>
         <cylinder length="0.05" radius="0.02"/>
       </geometry>
+      <origin xyz="0 0 0.025"/>
     </collision>
   </link>
   <joint name="right_arm_wrist_to_right_arm_palm" type="fixed">
     <parent link="right_arm_wrist"/>
     <child link="right_arm_palm"/>
-    <origin xyz="0 0 0.19"/>
+    <origin xyz="0 0 0.31"/>
   </joint>
   <link name="right_arm_left_gripper_top_knuckle">
     <visual>
       <geometry>
         <cylinder length="0.05" radius="0.005"/>
       </geometry>
+      <origin xyz="0 0 0.025"/>
+      <material name="aluminium"/>
     </visual>
     <collision>
       <geometry>
         <cylinder length="0.05" radius="0.005"/>
       </geometry>
+      <origin xyz="0 0 0.025"/>
     </collision>
   </link>
   <joint name="right_arm_palm_right_arm_left_gripper_top_knuckle" type="fixed">
     <parent link="right_arm_palm"/>
     <child link="right_arm_left_gripper_top_knuckle"/>
-    <origin rpy="0 0.523599 0" xyz="0.03 0 0.05"/>
+    <origin rpy="0 0.523599 0" xyz="0 0 0.05"/>
   </joint>
   <link name="right_arm_left_gripper_middle_knuckle">
     <visual>
       <geometry>
         <cylinder length="0.05" radius="0.005"/>
       </geometry>
+      <origin xyz="0 0 0.025"/>
+      <material name="aluminium"/>
     </visual>
     <collision>
       <geometry>
         <cylinder length="0.05" radius="0.005"/>
       </geometry>
+      <origin xyz="0 0 0.025"/>
     </collision>
   </link>
   <joint name="right_arm_left_gripper_top_knuckle_to_right_arm_left_gripper_middle_knuckle" type="fixed">
     <parent link="right_arm_left_gripper_top_knuckle"/>
     <child link="right_arm_left_gripper_middle_knuckle"/>
-    <origin rpy="0 -1.5708 0" xyz="-0.02 0 0.02"/>
+    <origin rpy="0 -1.047201225112 0" xyz="0 0 0.05"/>
   </joint>
-  <link name="right_arm_left_gripper_bottom_knuckle">
+  <link name="right_arm_right_gripper_top_knuckle">
     <visual>
       <geometry>
         <cylinder length="0.05" radius="0.005"/>
       </geometry>
+      <origin xyz="0 0 0.025"/>
+      <material name="aluminium"/>
     </visual>
     <collision>
       <geometry>
         <cylinder length="0.05" radius="0.005"/>
       </geometry>
+      <origin xyz="0 0 0.025"/>
     </collision>
   </link>
-  <joint name="right_arm_left_gripper_middle_knuckle_to_right_arm_left_gripper_bottom_knuckle" type="fixed">
-    <parent link="right_arm_left_gripper_middle_knuckle"/>
-    <child link="right_arm_left_gripper_bottom_knuckle"/>
-    <origin rpy="0 0.785398 0" xyz="0 0 0.02"/>
+  <joint name="right_arm_palm_right_arm_right_gripper_top_knuckle" type="fixed">
+    <parent link="right_arm_palm"/>
+    <child link="right_arm_right_gripper_top_knuckle"/>
+    <origin rpy="0 0.523599 3.14159" xyz="0 0 0.05"/>
+  </joint>
+  <link name="right_arm_right_gripper_middle_knuckle">
+    <visual>
+      <geometry>
+        <cylinder length="0.05" radius="0.005"/>
+      </geometry>
+      <origin xyz="0 0 0.025"/>
+      <material name="aluminium"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.05" radius="0.005"/>
+      </geometry>
+      <origin xyz="0 0 0.025"/>
+    </collision>
+  </link>
+  <joint name="right_arm_right_gripper_top_knuckle_to_right_arm_right_gripper_middle_knuckle" type="fixed">
+    <parent link="right_arm_right_gripper_top_knuckle"/>
+    <child link="right_arm_right_gripper_middle_knuckle"/>
+    <origin rpy="0 -1.047201225112 0" xyz="0 0 0.05"/>
+  </joint>
+  <link name="right_arm_bottom_gripper_top_knuckle">
+    <visual>
+      <geometry>
+        <cylinder length="0.05" radius="0.005"/>
+      </geometry>
+      <origin xyz="0 0 0.025"/>
+      <material name="aluminium"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.05" radius="0.005"/>
+      </geometry>
+      <origin xyz="0 0 0.025"/>
+    </collision>
+  </link>
+  <joint name="right_arm_palm_right_arm_bottom_gripper_top_knuckle" type="fixed">
+    <parent link="right_arm_palm"/>
+    <child link="right_arm_bottom_gripper_top_knuckle"/>
+    <origin rpy="0 0.523599 -1.5708" xyz="0 0 0.05"/>
+  </joint>
+  <link name="right_arm_bottom_gripper_middle_knuckle">
+    <visual>
+      <geometry>
+        <cylinder length="0.05" radius="0.005"/>
+      </geometry>
+      <origin xyz="0 0 0.025"/>
+      <material name="aluminium"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.05" radius="0.005"/>
+      </geometry>
+      <origin xyz="0 0 0.025"/>
+    </collision>
+  </link>
+  <joint name="right_arm_bottom_gripper_top_knuckle_to_right_arm_bottom_gripper_middle_knuckle" type="fixed">
+    <parent link="right_arm_bottom_gripper_top_knuckle"/>
+    <child link="right_arm_bottom_gripper_middle_knuckle"/>
+    <origin rpy="0 -1.047201225112 0" xyz="0 0 0.05"/>
   </joint>
 </robot>
 

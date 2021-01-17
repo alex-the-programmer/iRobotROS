@@ -1,5 +1,15 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="firefighter">
+    <!-- MATERIALS    -->
+    <xacro:macro name="color" params="name rgba">
+        <material name="${name}">
+            <color rgba="${rgba}" />
+        </material>
+    </xacro:macro>
+    <!-- correct colors   -->
+    <xacro:color name="aluminium" rgba="1 0 0 1"/>
+    <xacro:color name="blue" rgba="0 0 1 1"/>
+    <xacro:color name="black" rgba="1 0 0 1"/>
     <!--    COMMON DEFINITION-->
     <xacro:macro name="expandable" params="name">
         <link name="${name}">
@@ -7,9 +17,11 @@
                 <geometry>
                     <cylinder length="0.2" radius="0.02"/>
                 </geometry>
+                <origin xyz="0 0 ${-0.2/2}"/>
             </xacro:macro>
             <visual>
                 <xacro:expandable_geometry/>
+                <material name="aluminium"/>
             </visual>
             <collision>
                 <xacro:expandable_geometry/>
@@ -17,15 +29,17 @@
         </link>
     </xacro:macro>
 
-    <xacro:macro name="pipe" params="name length radius=0.02">
+    <xacro:macro name="pipe" params="name length radius=0.02 spin=-1">
         <link name="${name}">
             <xacro:macro name="pipe_geometry">
                 <geometry>
                     <cylinder length="${length}" radius="${radius}"/>
                 </geometry>
+                <origin xyz="0 0 ${spin*length/2}"/>
             </xacro:macro>
             <visual>
                 <xacro:pipe_geometry/>
+                <material name="aluminium"/>
             </visual>
             <collision>
                 <xacro:pipe_geometry/>
@@ -42,6 +56,7 @@
             </xacro:macro>
             <visual>
                 <xacro:wheel_geometry/>
+                <material name="black"/>
             </visual>
             <collision>
                 <xacro:wheel_geometry/>
@@ -59,6 +74,7 @@
         </xacro:macro>
         <visual>
             <xacro:base_link_geometry/>
+            <material name="blue"/>
         </visual>
         <collision>
             <xacro:base_link_geometry/>
@@ -70,7 +86,7 @@
     <joint name="base_link_to_expandable_to_upper_body" type="fixed">
         <parent link="base_link"/>
         <child link="expandable_from_base_link_to_upper_body"/>
-        <origin xyz="0 0 0.3 "/>
+        <origin xyz="0 0 0.4 "/>
     </joint>
 
     <!-- upper body    -->
@@ -82,6 +98,7 @@
         </xacro:macro>
         <visual>
             <xacro:upper_body_geometry/>
+            <material name="blue"/>
         </visual>
         <collision>
             <xacro:upper_body_geometry/>
@@ -90,17 +107,17 @@
     <joint name="expandable_from_base_link_to_upper_body_to_upper_body" type="fixed">
         <parent link="expandable_from_base_link_to_upper_body"/>
         <child link="upper_body_link"/>
-        <origin xyz="0 0 0.2"/>
+        <origin xyz="0 0 0.1"/>
     </joint>
 
     <!-- legs    -->
-    <xacro:macro name="leg" params="position parent x_shift">
+    <xacro:macro name="leg" params="position parent x_shift z_shift">
         <!-- hip       -->
         <xacro:pipe name="${position}_leg_hip" length="0.3"/>
         <joint name="${parent}_to_${position}_leg_hip" type="fixed">
             <parent link="${parent}"/>
             <child link="${position}_leg_hip"/>
-            <origin xyz="${x_shift} 0 -0.35"/>
+            <origin xyz="${x_shift} 0 ${z_shift}"/>
         </joint>
 
         <!-- ankle        -->
@@ -117,9 +134,11 @@
                 <geometry>
                     <box size="0.1 0.3 0.1"></box>
                 </geometry>
+                <origin xyz="0 0 -0.05"/>
             </xacro:macro>
             <visual>
                 <xacro:foot_heel_geometry/>
+                <material name="blue"/>
             </visual>
             <collision>
                 <xacro:foot_heel_geometry/>
@@ -128,13 +147,13 @@
         <joint name="${position}_leg_ankle_to_${position}_foot_heel" type="fixed">
             <parent link="${position}_leg_ankle"/>
             <child link="${position}_foot_heel"/>
-            <origin xyz="0 0.1 -0.2"/>
+            <origin xyz="0 0.1 -0.31"/>
         </joint>
         <xacro:expandable name="${position}_foot_extendable"/>
         <joint name="${position}_foot_heel_to_${position}_foot_extendable" type="fixed">
             <parent link="${position}_foot_heel"/>
             <child link="${position}_foot_extendable"/>
-            <origin xyz="0 -0.25 0" rpy="1.5708 0 0"/>
+            <origin xyz="0 -0.35 -0.05" rpy="1.5708 0 0"/>
         </joint>
         <!-- foot ball-->
         <link name="${position}_foot_ball">
@@ -142,9 +161,11 @@
                 <geometry>
                     <box size="0.1 0.2 0.1"></box>
                 </geometry>
+                <origin xyz="0 0 0.05"/>
             </xacro:macro>
             <visual>
                 <xacro:foot_ball_geometry/>
+                <material name="blue"/>
             </visual>
             <collision>
                 <xacro:foot_ball_geometry/>
@@ -154,7 +175,7 @@
             <parent link="${position}_foot_extendable"/>
             <child link="${position}_foot_ball"/>
             <!--  move rpy to the actual part instead of the joint           -->
-            <origin xyz="0 0 0.2" rpy="1.5708 0 0"/>
+            <origin xyz="0 0.05 0.1" rpy="1.5708 0 0"/>
         </joint>
         <!-- rear wheel        -->
         <xacro:wheel name="${position}_rear_wheel"/>
@@ -162,7 +183,7 @@
             <parent link="${position}_foot_heel"/>
             <child link="${position}_rear_wheel"/>
             <!--  move rpy to the actual part instead of the joint           -->
-            <origin xyz="0 0 -0.05" rpy="0 1.5708 0"/>
+            <origin xyz="0 0 -0.1" rpy="0 1.5708 0"/>
         </joint>
 
         <!-- front wheel        -->
@@ -171,24 +192,24 @@
             <parent link="${position}_foot_ball"/>
             <child link="${position}_front_wheel"/>
             <!--  move rpy to the actual part instead of the joint           -->
-            <origin xyz="0 0 0.05" rpy="0 1.5708 0"/>
+            <origin xyz="0 0 0.1" rpy="0 1.5708 0"/>
         </joint>
     </xacro:macro>
-    <xacro:leg position="left" parent="base_link" x_shift="0.09"/>
-    <xacro:leg position="right" parent="base_link" x_shift="-0.09"/>
+    <xacro:leg position="left" parent="base_link" x_shift="0.09" z_shift="-0.2"/>
+    <xacro:leg position="right" parent="base_link" x_shift="-0.09" z_shift="-0.2"/>
 
     <!-- arms    -->
-    <xacro:macro name="arm" params="position parent x_shift spin">
+    <xacro:macro name="arm" params="position parent x_shift spin pitch=0">
         <!-- shoulder        -->
-        <xacro:pipe name="${position}_arm_shoulder" length="0.3"/>
+        <xacro:pipe name="${position}_arm_shoulder" length="0.3" spin="1"/>
         <joint name="${parent}_to_${position}_arm_shoulder" type="fixed">
             <parent link="${parent}"/>
             <child link="${position}_arm_shoulder"/>
-            <origin xyz="${x_shift} -0.1 0" rpy="1.5708 0 ${spin*0.523599}"/>
+            <origin xyz="${x_shift} 0 0" rpy="1.5708 ${pitch} ${spin*0.523599}"/>
         </joint>
 
         <!-- writs        -->
-        <xacro:pipe name="${position}_arm_wrist" length="0.3"/>
+        <xacro:pipe name="${position}_arm_wrist" length="0.3" spin="1"/>
         <joint name="${position}_arm_shoulder_to_${position}_arm_wrist" type="fixed">
             <parent link="${position}_arm_shoulder"/>
             <child link="${position}_arm_wrist"/>
@@ -196,41 +217,35 @@
         </joint>
 
         <!-- palms        -->
-        <xacro:pipe name="${position}_arm_palm" length="0.05"/>
+        <xacro:pipe name="${position}_arm_palm" length="0.05" spin="1"/>
         <joint name="${position}_arm_wrist_to_${position}_arm_palm" type="fixed">
             <parent link="${position}_arm_wrist"/>
             <child link="${position}_arm_palm"/>
-            <origin xyz="0 0 0.19"/>
+            <origin xyz="0 0 0.31"/>
         </joint>
 
         <!-- gripper        -->
-        <xacro:macro name="gripper" params="arm_position gripper_position parent pitch">
+        <xacro:macro name="gripper" params="arm_position gripper_position parent yaw=0">
             <!-- top knuckle           -->
-            <xacro:pipe name="${arm_position}_arm_${gripper_position}_gripper_top_knuckle" length="0.05" radius="0.005"/>
+            <xacro:pipe name="${arm_position}_arm_${gripper_position}_gripper_top_knuckle" length="0.05" radius="0.005" spin="1"/>
            <joint name="${parent}_${arm_position}_arm_${gripper_position}_gripper_top_knuckle" type="fixed">
                 <parent link="${parent}"/>
                 <child link="${arm_position}_arm_${gripper_position}_gripper_top_knuckle"/>
-                <origin xyz="0.03 0 0.05" rpy="0 ${pitch} 0"/>
-            </joint>
-
-            <!-- middle knuckle           -->
-            <xacro:pipe name="${arm_position}_arm_${gripper_position}_gripper_middle_knuckle" length="0.05" radius="0.005"/>
-           <joint name="${arm_position}_arm_${gripper_position}_gripper_top_knuckle_to_${arm_position}_arm_${gripper_position}_gripper_middle_knuckle" type="fixed">
-                <parent link="${arm_position}_arm_${gripper_position}_gripper_top_knuckle"/>
-                <child link="${arm_position}_arm_${gripper_position}_gripper_middle_knuckle"/>
-                <origin xyz="-0.02 0 0.02" rpy="0 -1.5708 0"/>
+                <origin xyz="0 0 0.05" rpy="0 0.523599 ${yaw}"/>
             </joint>
 
             <!-- bottom knuckle           -->
-            <xacro:pipe name="${arm_position}_arm_${gripper_position}_gripper_bottom_knuckle" length="0.05" radius="0.005"/>
-           <joint name="${arm_position}_arm_${gripper_position}_gripper_middle_knuckle_to_${arm_position}_arm_${gripper_position}_gripper_bottom_knuckle" type="fixed">
-                <parent link="${arm_position}_arm_${gripper_position}_gripper_middle_knuckle"/>
-                <child link="${arm_position}_arm_${gripper_position}_gripper_bottom_knuckle"/>
-                <origin xyz="0 0 0.02" rpy="0 0.785398 0"/>
+            <xacro:pipe name="${arm_position}_arm_${gripper_position}_gripper_middle_knuckle" length="0.05" radius="0.005" spin="1"/>
+           <joint name="${arm_position}_arm_${gripper_position}_gripper_top_knuckle_to_${arm_position}_arm_${gripper_position}_gripper_middle_knuckle" type="fixed">
+                <parent link="${arm_position}_arm_${gripper_position}_gripper_top_knuckle"/>
+                <child link="${arm_position}_arm_${gripper_position}_gripper_middle_knuckle"/>
+                <origin xyz="0 0 0.05" rpy="0 -1.047201225112 0"/>
             </joint>
         </xacro:macro>
-        <xacro:gripper parent="${position}_arm_palm" arm_position="${position}" gripper_position="left" pitch="0.523599"/>
+        <xacro:gripper parent="${position}_arm_palm" arm_position="${position}" gripper_position="left"  />
+        <xacro:gripper parent="${position}_arm_palm" arm_position="${position}" gripper_position="right" yaw="3.14159"/>
+        <xacro:gripper parent="${position}_arm_palm" arm_position="${position}" gripper_position="bottom" yaw="-1.5708"/>
     </xacro:macro>
-    <xacro:arm position="left" parent="upper_body_link" x_shift="0.25" spin="1"/>
-    <xacro:arm position="right" parent="upper_body_link" x_shift="-0.25" spin="-1"/>
+    <xacro:arm position="left" parent="upper_body_link" x_shift="0.17" spin="1"/>
+    <xacro:arm position="right" parent="upper_body_link" x_shift="-0.17" spin="-1" pitch="3.14159"/>
 </robot>
