@@ -71,7 +71,9 @@
       <mass value="4"/>
     </intertial>
   </link>
-  <joint name="expandable_from_base_link_to_upper_body_to_upper_body" type="fixed">
+  <joint name="expandable_from_base_link_to_upper_body_to_upper_body" type="prismatic">
+    <axis xyz="0 0 1"/>
+    <limit effort="1000.0" lower="-0.1" upper="1.2" velocity="0.5"/>
     <parent link="expandable_from_base_link_to_upper_body"/>
     <child link="upper_body_link"/>
     <origin xyz="0 0 0.1"/>
