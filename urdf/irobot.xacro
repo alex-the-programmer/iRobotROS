@@ -208,7 +208,8 @@
         </joint>
         <!-- rear wheel        -->
         <xacro:wheel name="${position}_rear_wheel"/>
-        <joint name="${position}_foot_heel_to_${position}_rear_wheel" type="fixed">
+        <joint name="${position}_foot_heel_to_${position}_rear_wheel" type="continuous">
+            <axis xyz="0 0 1"/>
             <parent link="${position}_foot_heel"/>
             <child link="${position}_rear_wheel"/>
             <!--  move rpy to the actual part instead of the joint           -->
@@ -217,7 +218,8 @@
 
         <!-- front wheel        -->
         <xacro:wheel name="${position}_front_wheel"/>
-        <joint name="${position}_foot_ball_to_${position}_front_wheel" type="fixed">
+        <joint name="${position}_foot_ball_to_${position}_front_wheel" type="continuous">
+            <axis xyz="0 0 1"/>
             <parent link="${position}_foot_ball"/>
             <child link="${position}_front_wheel"/>
             <!--  move rpy to the actual part instead of the joint           -->
