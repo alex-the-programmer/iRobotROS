@@ -532,7 +532,8 @@
       <mass value="0.005000000000000001"/>
     </intertial>
   </link>
-  <joint name="left_arm_wrist_y_to_left_arm_palm" type="fixed">
+  <joint name="left_arm_wrist_y_to_left_arm_palm" type="continuous">
+    <axis xyz="0 0 1"/>
     <parent link="left_arm_wrist_y"/>
     <child link="left_arm_palm"/>
     <origin xyz="0 0 0.31"/>
@@ -799,7 +800,8 @@
       <mass value="0.005000000000000001"/>
     </intertial>
   </link>
-  <joint name="right_arm_wrist_y_to_right_arm_palm" type="fixed">
+  <joint name="right_arm_wrist_y_to_right_arm_palm" type="continuous">
+    <axis xyz="0 0 1"/>
     <parent link="right_arm_wrist_y"/>
     <child link="right_arm_palm"/>
     <origin xyz="0 0 0.31"/>

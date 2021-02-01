@@ -267,7 +267,8 @@
 
         <!-- palms        -->
         <xacro:pipe name="${position}_arm_palm" length="0.05" spin="1"/>
-        <joint name="${position}_arm_wrist_y_to_${position}_arm_palm" type="fixed">
+        <joint name="${position}_arm_wrist_y_to_${position}_arm_palm" type="continuous">
+            <axis xyz="0 0 1"/>
             <parent link="${position}_arm_wrist_y"/>
             <child link="${position}_arm_palm"/>
             <origin xyz="0 0 0.31"/>
