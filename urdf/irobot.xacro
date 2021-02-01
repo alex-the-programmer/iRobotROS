@@ -120,7 +120,7 @@
         </intertial>
     </link>
     <joint name="expandable_from_base_link_to_upper_body_to_upper_body" type="prismatic">
-        <axis xyz="0 0 1"/>
+         <axis xyz="0 0 1"/>
          <limit effort="1000.0" lower="-0.1" upper="1.2" velocity="0.5"/>
         <parent link="expandable_from_base_link_to_upper_body"/>
         <child link="upper_body_link"/>
@@ -131,7 +131,9 @@
     <xacro:macro name="leg" params="position parent x_shift z_shift">
         <!-- hip       -->
         <xacro:pipe name="${position}_leg_hip" length="0.3"/>
-        <joint name="${parent}_to_${position}_leg_hip" type="fixed">
+        <joint name="${parent}_to_${position}_leg_hip" type="revolute">
+            <axis xyz="1 0 0"/>
+            <limit effort="1000.0" lower="-1.5708" upper="1.5708" velocity="0.5"/>
             <parent link="${parent}"/>
             <child link="${position}_leg_hip"/>
             <origin xyz="${x_shift} 0 ${z_shift}"/>
@@ -139,7 +141,9 @@
 
         <!-- ankle        -->
         <xacro:pipe name="${position}_leg_ankle" length="0.3"/>
-        <joint name="${position}_leg_hip_to_${position}_leg_ankle" type="fixed">
+        <joint name="${position}_leg_hip_to_${position}_leg_ankle" type="revolute">
+            <axis xyz="1 0 0"/>
+            <limit effort="1000.0" lower="-1.5708" upper="1.5708" velocity="0.5"/>
             <parent link="${position}_leg_hip"/>
             <child link="${position}_leg_ankle"/>
             <origin xyz="0 0 -0.31"/>

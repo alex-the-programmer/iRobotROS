@@ -96,7 +96,9 @@
       <mass value="0.03"/>
     </intertial>
   </link>
-  <joint name="base_link_to_left_leg_hip" type="fixed">
+  <joint name="base_link_to_left_leg_hip" type="revolute">
+    <axis xyz="1 0 0"/>
+    <limit effort="1000.0" lower="-1.5708" upper="1.5708" velocity="0.5"/>
     <parent link="base_link"/>
     <child link="left_leg_hip"/>
     <origin xyz="0.09 0 -0.2"/>
@@ -119,7 +121,9 @@
       <mass value="0.03"/>
     </intertial>
   </link>
-  <joint name="left_leg_hip_to_left_leg_ankle" type="fixed">
+  <joint name="left_leg_hip_to_left_leg_ankle" type="revolute">
+    <axis xyz="1 0 0"/>
+    <limit effort="1000.0" lower="-1.5708" upper="1.5708" velocity="0.5"/>
     <parent link="left_leg_hip"/>
     <child link="left_leg_ankle"/>
     <origin xyz="0 0 -0.31"/>
@@ -260,7 +264,9 @@
       <mass value="0.03"/>
     </intertial>
   </link>
-  <joint name="base_link_to_right_leg_hip" type="fixed">
+  <joint name="base_link_to_right_leg_hip" type="revolute">
+    <axis xyz="1 0 0"/>
+    <limit effort="1000.0" lower="-1.5708" upper="1.5708" velocity="0.5"/>
     <parent link="base_link"/>
     <child link="right_leg_hip"/>
     <origin xyz="-0.09 0 -0.2"/>
@@ -283,7 +289,9 @@
       <mass value="0.03"/>
     </intertial>
   </link>
-  <joint name="right_leg_hip_to_right_leg_ankle" type="fixed">
+  <joint name="right_leg_hip_to_right_leg_ankle" type="revolute">
+    <axis xyz="1 0 0"/>
+    <limit effort="1000.0" lower="-1.5708" upper="1.5708" velocity="0.5"/>
     <parent link="right_leg_hip"/>
     <child link="right_leg_ankle"/>
     <origin xyz="0 0 -0.31"/>
