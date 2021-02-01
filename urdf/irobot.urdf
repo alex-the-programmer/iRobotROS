@@ -414,7 +414,32 @@
     <!--  move rpy to the actual part instead of the joint           -->
     <origin rpy="0 1.5708 0" xyz="0 0 0.1"/>
   </joint>
-  <link name="left_arm_shoulder">
+  <link name="left_arm_shoulder_x">
+    <visual>
+      <geometry>
+        <cylinder length="0.01" radius="0.02"/>
+      </geometry>
+      <origin xyz="0 0 0.005"/>
+      <material name="aluminium"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.01" radius="0.02"/>
+      </geometry>
+      <origin xyz="0 0 0.005"/>
+    </collision>
+    <intertial>
+      <mass value="0.001"/>
+    </intertial>
+  </link>
+  <joint name="upper_body_link_to_left_arm_shoulder_x" type="revolute">
+    <axis xyz="1 0 0"/>
+    <limit effort="1000.0" lower="-1.5708" upper="1.5708" velocity="0.5"/>
+    <parent link="upper_body_link"/>
+    <child link="left_arm_shoulder_x"/>
+    <origin rpy="1.5708 0 1.5708" xyz="0.17 0 0"/>
+  </joint>
+  <link name="left_arm_shoulder_y">
     <visual>
       <geometry>
         <cylinder length="0.3" radius="0.02"/>
@@ -432,10 +457,12 @@
       <mass value="0.03"/>
     </intertial>
   </link>
-  <joint name="upper_body_link_to_left_arm_shoulder" type="fixed">
-    <parent link="upper_body_link"/>
-    <child link="left_arm_shoulder"/>
-    <origin rpy="1.5708 0 0.523599" xyz="0.17 0 0"/>
+  <joint name="left_arm_shoulder_x_to_left_arm_shoulder_y" type="revolute">
+    <axis xyz="0 1 0"/>
+    <limit effort="1000.0" lower="-1.5708" upper="1.5708" velocity="0.5"/>
+    <parent link="left_arm_shoulder_x"/>
+    <child link="left_arm_shoulder_y"/>
+    <origin xyz="0 0 0.02"/>
   </joint>
   <link name="left_arm_wrist">
     <visual>
@@ -455,8 +482,8 @@
       <mass value="0.03"/>
     </intertial>
   </link>
-  <joint name="left_arm_shoulder_to_left_arm_wrist" type="fixed">
-    <parent link="left_arm_shoulder"/>
+  <joint name="left_arm_shoulder_y_to_left_arm_wrist" type="fixed">
+    <parent link="left_arm_shoulder_y"/>
     <child link="left_arm_wrist"/>
     <origin xyz="0 0 0.31"/>
   </joint>
@@ -621,7 +648,32 @@
     <child link="left_arm_bottom_gripper_middle_knuckle"/>
     <origin rpy="0 -1.047201225112 0" xyz="0 0 0.05"/>
   </joint>
-  <link name="right_arm_shoulder">
+  <link name="right_arm_shoulder_x">
+    <visual>
+      <geometry>
+        <cylinder length="0.01" radius="0.02"/>
+      </geometry>
+      <origin xyz="0 0 0.005"/>
+      <material name="aluminium"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.01" radius="0.02"/>
+      </geometry>
+      <origin xyz="0 0 0.005"/>
+    </collision>
+    <intertial>
+      <mass value="0.001"/>
+    </intertial>
+  </link>
+  <joint name="upper_body_link_to_right_arm_shoulder_x" type="revolute">
+    <axis xyz="1 0 0"/>
+    <limit effort="1000.0" lower="-1.5708" upper="1.5708" velocity="0.5"/>
+    <parent link="upper_body_link"/>
+    <child link="right_arm_shoulder_x"/>
+    <origin rpy="1.5708 3.14159 -1.5708" xyz="-0.17 0 0"/>
+  </joint>
+  <link name="right_arm_shoulder_y">
     <visual>
       <geometry>
         <cylinder length="0.3" radius="0.02"/>
@@ -639,10 +691,12 @@
       <mass value="0.03"/>
     </intertial>
   </link>
-  <joint name="upper_body_link_to_right_arm_shoulder" type="fixed">
-    <parent link="upper_body_link"/>
-    <child link="right_arm_shoulder"/>
-    <origin rpy="1.5708 3.14159 -0.523599" xyz="-0.17 0 0"/>
+  <joint name="right_arm_shoulder_x_to_right_arm_shoulder_y" type="revolute">
+    <axis xyz="0 1 0"/>
+    <limit effort="1000.0" lower="-1.5708" upper="1.5708" velocity="0.5"/>
+    <parent link="right_arm_shoulder_x"/>
+    <child link="right_arm_shoulder_y"/>
+    <origin xyz="0 0 0.02"/>
   </joint>
   <link name="right_arm_wrist">
     <visual>
@@ -662,8 +716,8 @@
       <mass value="0.03"/>
     </intertial>
   </link>
-  <joint name="right_arm_shoulder_to_right_arm_wrist" type="fixed">
-    <parent link="right_arm_shoulder"/>
+  <joint name="right_arm_shoulder_y_to_right_arm_wrist" type="fixed">
+    <parent link="right_arm_shoulder_y"/>
     <child link="right_arm_wrist"/>
     <origin xyz="0 0 0.31"/>
   </joint>
