@@ -464,7 +464,32 @@
     <child link="left_arm_shoulder_y"/>
     <origin xyz="0 0 0.02"/>
   </joint>
-  <link name="left_arm_wrist">
+  <link name="left_arm_wrist_x">
+    <visual>
+      <geometry>
+        <cylinder length="0.01" radius="0.02"/>
+      </geometry>
+      <origin xyz="0 0 0.005"/>
+      <material name="aluminium"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.01" radius="0.02"/>
+      </geometry>
+      <origin xyz="0 0 0.005"/>
+    </collision>
+    <intertial>
+      <mass value="0.001"/>
+    </intertial>
+  </link>
+  <joint name="left_arm_shoulder_y_to_left_arm_wrist_x" type="revolute">
+    <axis xyz="1 0 0"/>
+    <limit effort="1000.0" lower="-1.5708" upper="1.5708" velocity="0.5"/>
+    <parent link="left_arm_shoulder_y"/>
+    <child link="left_arm_wrist_x"/>
+    <origin xyz="0 0 0.31"/>
+  </joint>
+  <link name="left_arm_wrist_y">
     <visual>
       <geometry>
         <cylinder length="0.3" radius="0.02"/>
@@ -482,10 +507,12 @@
       <mass value="0.03"/>
     </intertial>
   </link>
-  <joint name="left_arm_shoulder_y_to_left_arm_wrist" type="fixed">
-    <parent link="left_arm_shoulder_y"/>
-    <child link="left_arm_wrist"/>
-    <origin xyz="0 0 0.31"/>
+  <joint name="left_arm_wrist_x_to_left_arm_wrist_y" type="revolute">
+    <axis xyz="0 1 0"/>
+    <limit effort="1000.0" lower="-1.5708" upper="1.5708" velocity="0.5"/>
+    <parent link="left_arm_wrist_x"/>
+    <child link="left_arm_wrist_y"/>
+    <origin xyz="0 0 0.02"/>
   </joint>
   <link name="left_arm_palm">
     <visual>
@@ -505,8 +532,8 @@
       <mass value="0.005000000000000001"/>
     </intertial>
   </link>
-  <joint name="left_arm_wrist_to_left_arm_palm" type="fixed">
-    <parent link="left_arm_wrist"/>
+  <joint name="left_arm_wrist_y_to_left_arm_palm" type="fixed">
+    <parent link="left_arm_wrist_y"/>
     <child link="left_arm_palm"/>
     <origin xyz="0 0 0.31"/>
   </joint>
@@ -698,7 +725,32 @@
     <child link="right_arm_shoulder_y"/>
     <origin xyz="0 0 0.02"/>
   </joint>
-  <link name="right_arm_wrist">
+  <link name="right_arm_wrist_x">
+    <visual>
+      <geometry>
+        <cylinder length="0.01" radius="0.02"/>
+      </geometry>
+      <origin xyz="0 0 0.005"/>
+      <material name="aluminium"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.01" radius="0.02"/>
+      </geometry>
+      <origin xyz="0 0 0.005"/>
+    </collision>
+    <intertial>
+      <mass value="0.001"/>
+    </intertial>
+  </link>
+  <joint name="right_arm_shoulder_y_to_right_arm_wrist_x" type="revolute">
+    <axis xyz="1 0 0"/>
+    <limit effort="1000.0" lower="-1.5708" upper="1.5708" velocity="0.5"/>
+    <parent link="right_arm_shoulder_y"/>
+    <child link="right_arm_wrist_x"/>
+    <origin xyz="0 0 0.31"/>
+  </joint>
+  <link name="right_arm_wrist_y">
     <visual>
       <geometry>
         <cylinder length="0.3" radius="0.02"/>
@@ -716,10 +768,12 @@
       <mass value="0.03"/>
     </intertial>
   </link>
-  <joint name="right_arm_shoulder_y_to_right_arm_wrist" type="fixed">
-    <parent link="right_arm_shoulder_y"/>
-    <child link="right_arm_wrist"/>
-    <origin xyz="0 0 0.31"/>
+  <joint name="right_arm_wrist_x_to_right_arm_wrist_y" type="revolute">
+    <axis xyz="0 1 0"/>
+    <limit effort="1000.0" lower="-1.5708" upper="1.5708" velocity="0.5"/>
+    <parent link="right_arm_wrist_x"/>
+    <child link="right_arm_wrist_y"/>
+    <origin xyz="0 0 0.02"/>
   </joint>
   <link name="right_arm_palm">
     <visual>
@@ -739,8 +793,8 @@
       <mass value="0.005000000000000001"/>
     </intertial>
   </link>
-  <joint name="right_arm_wrist_to_right_arm_palm" type="fixed">
-    <parent link="right_arm_wrist"/>
+  <joint name="right_arm_wrist_y_to_right_arm_palm" type="fixed">
+    <parent link="right_arm_wrist_y"/>
     <child link="right_arm_palm"/>
     <origin xyz="0 0 0.31"/>
   </joint>

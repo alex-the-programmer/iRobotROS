@@ -248,17 +248,27 @@
         </joint>
 
         <!-- writs        -->
-        <xacro:pipe name="${position}_arm_wrist" length="0.3" spin="1"/>
-        <joint name="${position}_arm_shoulder_y_to_${position}_arm_wrist" type="fixed">
+        <xacro:pipe name="${position}_arm_wrist_x" length="0.01" spin="1"/>
+        <joint name="${position}_arm_shoulder_y_to_${position}_arm_wrist_x" type="revolute">
+            <axis xyz="1 0 0"/>
+            <limit effort="1000.0" lower="-1.5708" upper="1.5708" velocity="0.5"/>
             <parent link="${position}_arm_shoulder_y"/>
-            <child link="${position}_arm_wrist"/>
+            <child link="${position}_arm_wrist_x"/>
             <origin xyz="0 0 0.31"/>
+        </joint>
+        <xacro:pipe name="${position}_arm_wrist_y" length="0.3" spin="1"/>
+        <joint name="${position}_arm_wrist_x_to_${position}_arm_wrist_y" type="revolute">
+            <axis xyz="0 1 0"/>
+            <limit effort="1000.0" lower="-1.5708" upper="1.5708" velocity="0.5"/>
+            <parent link="${position}_arm_wrist_x"/>
+            <child link="${position}_arm_wrist_y"/>
+            <origin xyz="0 0 0.02"/>
         </joint>
 
         <!-- palms        -->
         <xacro:pipe name="${position}_arm_palm" length="0.05" spin="1"/>
-        <joint name="${position}_arm_wrist_to_${position}_arm_palm" type="fixed">
-            <parent link="${position}_arm_wrist"/>
+        <joint name="${position}_arm_wrist_y_to_${position}_arm_palm" type="fixed">
+            <parent link="${position}_arm_wrist_y"/>
             <child link="${position}_arm_palm"/>
             <origin xyz="0 0 0.31"/>
         </joint>
