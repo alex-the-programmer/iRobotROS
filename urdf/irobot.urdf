@@ -555,7 +555,9 @@
       <mass value="0.005000000000000001"/>
     </intertial>
   </link>
-  <joint name="left_arm_palm_left_arm_left_gripper_top_knuckle" type="fixed">
+  <joint name="left_arm_palm_left_arm_left_gripper_top_knuckle" type="revolute">
+    <axis xyz="0 1 0"/>
+    <limit effort="1000.0" lower="0" upper="1.5708" velocity="0.5"/>
     <parent link="left_arm_palm"/>
     <child link="left_arm_left_gripper_top_knuckle"/>
     <origin rpy="0 0.523599 0" xyz="0 0 0.05"/>
@@ -601,7 +603,9 @@
       <mass value="0.005000000000000001"/>
     </intertial>
   </link>
-  <joint name="left_arm_palm_left_arm_right_gripper_top_knuckle" type="fixed">
+  <joint name="left_arm_palm_left_arm_right_gripper_top_knuckle" type="revolute">
+    <axis xyz="0 1 0"/>
+    <limit effort="1000.0" lower="0" upper="1.5708" velocity="0.5"/>
     <parent link="left_arm_palm"/>
     <child link="left_arm_right_gripper_top_knuckle"/>
     <origin rpy="0 0.523599 3.14159" xyz="0 0 0.05"/>
@@ -647,7 +651,9 @@
       <mass value="0.005000000000000001"/>
     </intertial>
   </link>
-  <joint name="left_arm_palm_left_arm_bottom_gripper_top_knuckle" type="fixed">
+  <joint name="left_arm_palm_left_arm_bottom_gripper_top_knuckle" type="revolute">
+    <axis xyz="0 1 0"/>
+    <limit effort="1000.0" lower="0" upper="1.5708" velocity="0.5"/>
     <parent link="left_arm_palm"/>
     <child link="left_arm_bottom_gripper_top_knuckle"/>
     <origin rpy="0 0.523599 -1.5708" xyz="0 0 0.05"/>
@@ -816,7 +822,9 @@
       <mass value="0.005000000000000001"/>
     </intertial>
   </link>
-  <joint name="right_arm_palm_right_arm_left_gripper_top_knuckle" type="fixed">
+  <joint name="right_arm_palm_right_arm_left_gripper_top_knuckle" type="revolute">
+    <axis xyz="0 1 0"/>
+    <limit effort="1000.0" lower="0" upper="1.5708" velocity="0.5"/>
     <parent link="right_arm_palm"/>
     <child link="right_arm_left_gripper_top_knuckle"/>
     <origin rpy="0 0.523599 0" xyz="0 0 0.05"/>
@@ -862,7 +870,9 @@
       <mass value="0.005000000000000001"/>
     </intertial>
   </link>
-  <joint name="right_arm_palm_right_arm_right_gripper_top_knuckle" type="fixed">
+  <joint name="right_arm_palm_right_arm_right_gripper_top_knuckle" type="revolute">
+    <axis xyz="0 1 0"/>
+    <limit effort="1000.0" lower="0" upper="1.5708" velocity="0.5"/>
     <parent link="right_arm_palm"/>
     <child link="right_arm_right_gripper_top_knuckle"/>
     <origin rpy="0 0.523599 3.14159" xyz="0 0 0.05"/>
@@ -908,7 +918,9 @@
       <mass value="0.005000000000000001"/>
     </intertial>
   </link>
-  <joint name="right_arm_palm_right_arm_bottom_gripper_top_knuckle" type="fixed">
+  <joint name="right_arm_palm_right_arm_bottom_gripper_top_knuckle" type="revolute">
+    <axis xyz="0 1 0"/>
+    <limit effort="1000.0" lower="0" upper="1.5708" velocity="0.5"/>
     <parent link="right_arm_palm"/>
     <child link="right_arm_bottom_gripper_top_knuckle"/>
     <origin rpy="0 0.523599 -1.5708" xyz="0 0 0.05"/>

@@ -277,7 +277,9 @@
         <xacro:macro name="gripper" params="arm_position gripper_position parent yaw=0">
             <!-- top knuckle           -->
             <xacro:pipe name="${arm_position}_arm_${gripper_position}_gripper_top_knuckle" length="0.05" radius="0.005" spin="1"/>
-           <joint name="${parent}_${arm_position}_arm_${gripper_position}_gripper_top_knuckle" type="fixed">
+           <joint name="${parent}_${arm_position}_arm_${gripper_position}_gripper_top_knuckle" type="revolute">
+                <axis xyz="0 1 0"/>
+                <limit effort="1000.0" lower="0" upper="1.5708" velocity="0.5"/>
                 <parent link="${parent}"/>
                 <child link="${arm_position}_arm_${gripper_position}_gripper_top_knuckle"/>
                 <origin xyz="0 0 0.05" rpy="0 0.523599 ${yaw}"/>
