@@ -26,6 +26,9 @@
             <collision>
                 <xacro:expandable_geometry/>
             </collision>
+            <intertial>
+                <mass value="0.2"/>
+            </intertial>
         </link>
     </xacro:macro>
 
@@ -44,6 +47,9 @@
             <collision>
                 <xacro:pipe_geometry/>
             </collision>
+             <intertial>
+                <mass value="${0.1*length}"/>
+            </intertial>
         </link>
     </xacro:macro>
 
@@ -61,6 +67,9 @@
             <collision>
                 <xacro:wheel_geometry/>
             </collision>
+             <intertial>
+                <mass value="0.2"/>
+            </intertial>
         </link>
     </xacro:macro>
 
@@ -79,6 +88,9 @@
         <collision>
             <xacro:base_link_geometry/>
         </collision>
+         <intertial>
+            <mass value="15"/>
+        </intertial>
     </link>
 
     <!-- expandable for upper body    -->
@@ -103,6 +115,9 @@
         <collision>
             <xacro:upper_body_geometry/>
         </collision>
+         <intertial>
+            <mass value="4"/>
+        </intertial>
     </link>
     <joint name="expandable_from_base_link_to_upper_body_to_upper_body" type="fixed">
         <parent link="expandable_from_base_link_to_upper_body"/>
@@ -143,6 +158,9 @@
             <collision>
                 <xacro:foot_heel_geometry/>
             </collision>
+             <intertial>
+                <mass value="0.5"/>
+            </intertial>
         </link>
         <joint name="${position}_leg_ankle_to_${position}_foot_heel" type="fixed">
             <parent link="${position}_leg_ankle"/>
@@ -170,6 +188,9 @@
             <collision>
                 <xacro:foot_ball_geometry/>
             </collision>
+             <intertial>
+                <mass value="0.5"/>
+            </intertial>
         </link>
         <joint name="${position}_foot_extendable_to_${position}_foot_ball" type="fixed">
             <parent link="${position}_foot_extendable"/>
@@ -264,6 +285,9 @@
         <collision>
             <xacro:camera_box_geometry/>
         </collision>
+         <intertial>
+            <mass value="1"/>
+        </intertial>
     </link>
     <joint name="upper_body_link_to_camera_box" type="fixed">
         <parent link="upper_body_link"/>

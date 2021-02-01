@@ -27,6 +27,9 @@
         <box size="0.3 0.4 0.4"/>
       </geometry>
     </collision>
+    <intertial>
+      <mass value="15"/>
+    </intertial>
   </link>
   <link name="expandable_from_base_link_to_upper_body">
     <visual>
@@ -42,6 +45,9 @@
       </geometry>
       <origin xyz="0 0 -0.1"/>
     </collision>
+    <intertial>
+      <mass value="0.2"/>
+    </intertial>
   </link>
   <joint name="base_link_to_expandable_to_upper_body" type="fixed">
     <parent link="base_link"/>
@@ -61,6 +67,9 @@
         <box size="0.3 0.4 0.2"/>
       </geometry>
     </collision>
+    <intertial>
+      <mass value="4"/>
+    </intertial>
   </link>
   <joint name="expandable_from_base_link_to_upper_body_to_upper_body" type="fixed">
     <parent link="expandable_from_base_link_to_upper_body"/>
@@ -81,6 +90,9 @@
       </geometry>
       <origin xyz="0 0 -0.15"/>
     </collision>
+    <intertial>
+      <mass value="0.03"/>
+    </intertial>
   </link>
   <joint name="base_link_to_left_leg_hip" type="fixed">
     <parent link="base_link"/>
@@ -101,6 +113,9 @@
       </geometry>
       <origin xyz="0 0 -0.15"/>
     </collision>
+    <intertial>
+      <mass value="0.03"/>
+    </intertial>
   </link>
   <joint name="left_leg_hip_to_left_leg_ankle" type="fixed">
     <parent link="left_leg_hip"/>
@@ -122,6 +137,9 @@
       </geometry>
       <origin xyz="0 0 -0.05"/>
     </collision>
+    <intertial>
+      <mass value="0.5"/>
+    </intertial>
   </link>
   <joint name="left_leg_ankle_to_left_foot_heel" type="fixed">
     <parent link="left_leg_ankle"/>
@@ -142,6 +160,9 @@
       </geometry>
       <origin xyz="0 0 -0.1"/>
     </collision>
+    <intertial>
+      <mass value="0.2"/>
+    </intertial>
   </link>
   <joint name="left_foot_heel_to_left_foot_extendable" type="fixed">
     <parent link="left_foot_heel"/>
@@ -163,6 +184,9 @@
       </geometry>
       <origin xyz="0 0 0.05"/>
     </collision>
+    <intertial>
+      <mass value="0.5"/>
+    </intertial>
   </link>
   <joint name="left_foot_extendable_to_left_foot_ball" type="fixed">
     <parent link="left_foot_extendable"/>
@@ -182,6 +206,9 @@
         <cylinder length="0.05" radius="0.05"/>
       </geometry>
     </collision>
+    <intertial>
+      <mass value="0.2"/>
+    </intertial>
   </link>
   <joint name="left_foot_heel_to_left_rear_wheel" type="fixed">
     <parent link="left_foot_heel"/>
@@ -201,6 +228,9 @@
         <cylinder length="0.05" radius="0.05"/>
       </geometry>
     </collision>
+    <intertial>
+      <mass value="0.2"/>
+    </intertial>
   </link>
   <joint name="left_foot_ball_to_left_front_wheel" type="fixed">
     <parent link="left_foot_ball"/>
@@ -222,6 +252,9 @@
       </geometry>
       <origin xyz="0 0 -0.15"/>
     </collision>
+    <intertial>
+      <mass value="0.03"/>
+    </intertial>
   </link>
   <joint name="base_link_to_right_leg_hip" type="fixed">
     <parent link="base_link"/>
@@ -242,6 +275,9 @@
       </geometry>
       <origin xyz="0 0 -0.15"/>
     </collision>
+    <intertial>
+      <mass value="0.03"/>
+    </intertial>
   </link>
   <joint name="right_leg_hip_to_right_leg_ankle" type="fixed">
     <parent link="right_leg_hip"/>
@@ -263,6 +299,9 @@
       </geometry>
       <origin xyz="0 0 -0.05"/>
     </collision>
+    <intertial>
+      <mass value="0.5"/>
+    </intertial>
   </link>
   <joint name="right_leg_ankle_to_right_foot_heel" type="fixed">
     <parent link="right_leg_ankle"/>
@@ -283,6 +322,9 @@
       </geometry>
       <origin xyz="0 0 -0.1"/>
     </collision>
+    <intertial>
+      <mass value="0.2"/>
+    </intertial>
   </link>
   <joint name="right_foot_heel_to_right_foot_extendable" type="fixed">
     <parent link="right_foot_heel"/>
@@ -304,6 +346,9 @@
       </geometry>
       <origin xyz="0 0 0.05"/>
     </collision>
+    <intertial>
+      <mass value="0.5"/>
+    </intertial>
   </link>
   <joint name="right_foot_extendable_to_right_foot_ball" type="fixed">
     <parent link="right_foot_extendable"/>
@@ -323,6 +368,9 @@
         <cylinder length="0.05" radius="0.05"/>
       </geometry>
     </collision>
+    <intertial>
+      <mass value="0.2"/>
+    </intertial>
   </link>
   <joint name="right_foot_heel_to_right_rear_wheel" type="fixed">
     <parent link="right_foot_heel"/>
@@ -342,6 +390,9 @@
         <cylinder length="0.05" radius="0.05"/>
       </geometry>
     </collision>
+    <intertial>
+      <mass value="0.2"/>
+    </intertial>
   </link>
   <joint name="right_foot_ball_to_right_front_wheel" type="fixed">
     <parent link="right_foot_ball"/>
@@ -363,6 +414,9 @@
       </geometry>
       <origin xyz="0 0 0.15"/>
     </collision>
+    <intertial>
+      <mass value="0.03"/>
+    </intertial>
   </link>
   <joint name="upper_body_link_to_left_arm_shoulder" type="fixed">
     <parent link="upper_body_link"/>
@@ -383,6 +437,9 @@
       </geometry>
       <origin xyz="0 0 0.15"/>
     </collision>
+    <intertial>
+      <mass value="0.03"/>
+    </intertial>
   </link>
   <joint name="left_arm_shoulder_to_left_arm_wrist" type="fixed">
     <parent link="left_arm_shoulder"/>
@@ -403,6 +460,9 @@
       </geometry>
       <origin xyz="0 0 0.025"/>
     </collision>
+    <intertial>
+      <mass value="0.005000000000000001"/>
+    </intertial>
   </link>
   <joint name="left_arm_wrist_to_left_arm_palm" type="fixed">
     <parent link="left_arm_wrist"/>
@@ -423,6 +483,9 @@
       </geometry>
       <origin xyz="0 0 0.025"/>
     </collision>
+    <intertial>
+      <mass value="0.005000000000000001"/>
+    </intertial>
   </link>
   <joint name="left_arm_palm_left_arm_left_gripper_top_knuckle" type="fixed">
     <parent link="left_arm_palm"/>
@@ -443,6 +506,9 @@
       </geometry>
       <origin xyz="0 0 0.025"/>
     </collision>
+    <intertial>
+      <mass value="0.005000000000000001"/>
+    </intertial>
   </link>
   <joint name="left_arm_left_gripper_top_knuckle_to_left_arm_left_gripper_middle_knuckle" type="fixed">
     <parent link="left_arm_left_gripper_top_knuckle"/>
@@ -463,6 +529,9 @@
       </geometry>
       <origin xyz="0 0 0.025"/>
     </collision>
+    <intertial>
+      <mass value="0.005000000000000001"/>
+    </intertial>
   </link>
   <joint name="left_arm_palm_left_arm_right_gripper_top_knuckle" type="fixed">
     <parent link="left_arm_palm"/>
@@ -483,6 +552,9 @@
       </geometry>
       <origin xyz="0 0 0.025"/>
     </collision>
+    <intertial>
+      <mass value="0.005000000000000001"/>
+    </intertial>
   </link>
   <joint name="left_arm_right_gripper_top_knuckle_to_left_arm_right_gripper_middle_knuckle" type="fixed">
     <parent link="left_arm_right_gripper_top_knuckle"/>
@@ -503,6 +575,9 @@
       </geometry>
       <origin xyz="0 0 0.025"/>
     </collision>
+    <intertial>
+      <mass value="0.005000000000000001"/>
+    </intertial>
   </link>
   <joint name="left_arm_palm_left_arm_bottom_gripper_top_knuckle" type="fixed">
     <parent link="left_arm_palm"/>
@@ -523,6 +598,9 @@
       </geometry>
       <origin xyz="0 0 0.025"/>
     </collision>
+    <intertial>
+      <mass value="0.005000000000000001"/>
+    </intertial>
   </link>
   <joint name="left_arm_bottom_gripper_top_knuckle_to_left_arm_bottom_gripper_middle_knuckle" type="fixed">
     <parent link="left_arm_bottom_gripper_top_knuckle"/>
@@ -543,6 +621,9 @@
       </geometry>
       <origin xyz="0 0 0.15"/>
     </collision>
+    <intertial>
+      <mass value="0.03"/>
+    </intertial>
   </link>
   <joint name="upper_body_link_to_right_arm_shoulder" type="fixed">
     <parent link="upper_body_link"/>
@@ -563,6 +644,9 @@
       </geometry>
       <origin xyz="0 0 0.15"/>
     </collision>
+    <intertial>
+      <mass value="0.03"/>
+    </intertial>
   </link>
   <joint name="right_arm_shoulder_to_right_arm_wrist" type="fixed">
     <parent link="right_arm_shoulder"/>
@@ -583,6 +667,9 @@
       </geometry>
       <origin xyz="0 0 0.025"/>
     </collision>
+    <intertial>
+      <mass value="0.005000000000000001"/>
+    </intertial>
   </link>
   <joint name="right_arm_wrist_to_right_arm_palm" type="fixed">
     <parent link="right_arm_wrist"/>
@@ -603,6 +690,9 @@
       </geometry>
       <origin xyz="0 0 0.025"/>
     </collision>
+    <intertial>
+      <mass value="0.005000000000000001"/>
+    </intertial>
   </link>
   <joint name="right_arm_palm_right_arm_left_gripper_top_knuckle" type="fixed">
     <parent link="right_arm_palm"/>
@@ -623,6 +713,9 @@
       </geometry>
       <origin xyz="0 0 0.025"/>
     </collision>
+    <intertial>
+      <mass value="0.005000000000000001"/>
+    </intertial>
   </link>
   <joint name="right_arm_left_gripper_top_knuckle_to_right_arm_left_gripper_middle_knuckle" type="fixed">
     <parent link="right_arm_left_gripper_top_knuckle"/>
@@ -643,6 +736,9 @@
       </geometry>
       <origin xyz="0 0 0.025"/>
     </collision>
+    <intertial>
+      <mass value="0.005000000000000001"/>
+    </intertial>
   </link>
   <joint name="right_arm_palm_right_arm_right_gripper_top_knuckle" type="fixed">
     <parent link="right_arm_palm"/>
@@ -663,6 +759,9 @@
       </geometry>
       <origin xyz="0 0 0.025"/>
     </collision>
+    <intertial>
+      <mass value="0.005000000000000001"/>
+    </intertial>
   </link>
   <joint name="right_arm_right_gripper_top_knuckle_to_right_arm_right_gripper_middle_knuckle" type="fixed">
     <parent link="right_arm_right_gripper_top_knuckle"/>
@@ -683,6 +782,9 @@
       </geometry>
       <origin xyz="0 0 0.025"/>
     </collision>
+    <intertial>
+      <mass value="0.005000000000000001"/>
+    </intertial>
   </link>
   <joint name="right_arm_palm_right_arm_bottom_gripper_top_knuckle" type="fixed">
     <parent link="right_arm_palm"/>
@@ -703,6 +805,9 @@
       </geometry>
       <origin xyz="0 0 0.025"/>
     </collision>
+    <intertial>
+      <mass value="0.005000000000000001"/>
+    </intertial>
   </link>
   <joint name="right_arm_bottom_gripper_top_knuckle_to_right_arm_bottom_gripper_middle_knuckle" type="fixed">
     <parent link="right_arm_bottom_gripper_top_knuckle"/>
@@ -724,6 +829,9 @@
       </geometry>
       <origin xyz="0 0.05 0.05"/>
     </collision>
+    <intertial>
+      <mass value="1"/>
+    </intertial>
   </link>
   <joint name="upper_body_link_to_camera_box" type="fixed">
     <parent link="upper_body_link"/>
